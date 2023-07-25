@@ -1,14 +1,20 @@
 import React from 'react';
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import CartWidget from './components/CartWidget/CartWidget'; 
-function App() {
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ItemListContainer from './ItemListContainer';
+import ItemDetailContainer from './ItemDetailContainer';
+import Navbar from './Navbar';
+
+const App = () => {
   return (
-    <div className="App">
+    <Router>
       <Navbar />
-      <CartWidget /> {/* Agregado del componente CartWidget */}
-    </div>
+      <Switch>
+        <Route exact path="/" component={ItemListContainer} />
+        <Route exact path="/category/:id" component={ItemListContainer} />
+        <Route exact path="/item/:id" component={ItemDetailContainer} />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
